@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Секретный квест</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: black;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
+
+    .box {
+        width: 90%;
+        max-width: 520px;
+    }
+
+    h1 {
+        color: #ff4da6;
+    }
+
+    input {
+        padding: 10px;
+        width: 80%;
+        margin-top: 10px;
+        border-radius: 10px;
+        border: none;
+        text-align: center;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        background: #ff4da6;
+        color: white;
+        cursor: pointer;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .fade {
+        animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    a {
+        color: #7cc7ff;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<!-- 1 СТРАНИЦА -->
+<div id="step1">
+    <h1>Если ты читаешь это, тебе предстоит немного подумать.</h1>
+
+    <p>Первый ключ: место, где мы проводили много времени вместе.</p>
+
+    <input id="a1" placeholder="введи ответ">
+    <button onclick="check1()">Дальше</button>
+</div>
+
+<!-- 2 СТРАНИЦА -->
+<div id="step2" class="hidden">
+    <h1>Молодец! Я в тебе не сомневалась.</h1>
+
+    <p>Второй ключ: мне нужна дата, фото — ты и цветы.</p>
+
+    <input id="a2" placeholder="дд.мм.гггг">
+    <button onclick="check2()">Дальше</button>
+</div>
+
+<!-- 3 СТРАНИЦА -->
+<div id="step3" class="hidden">
+    <h1>Надеюсь, это было не сложно :)</h1>
+
+    <p>Сейчас нужно будет ХОРОШО подумать.</p>
+
+    <p>Третий ключ: «Ты всегда такой была и есть»… тик-так, тик-так?</p>
+
+    <input id="a3" placeholder="время">
+    <button onclick="check3()">Открыть</button>
+</div>
+
+<!-- ФИНАЛ -->
+<div id="final" class="hidden fade">
+
+    <h1>💌 Ты уже совсем близко</h1>
+
+    <p>
+        Ссылка:<br>
+        <a href="https://account.proton.me/mail" target="_blank">
+            https://account.proton.me/mail
+        </a>
+    </p>
+
+    <p>
+        E-mail: <br>
+        <b>sekretnijsekretvsekretje@proton.me</b>
+    </p>
+
+    <p>
+        Поищи — пароль точно у тебя.
+    </p>
+
+    <p>🐱</p>
+
+    <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" width="260">
+
+</div>
+
+</div>
+
+<script>
+
+// 1 шаг
+function check1() {
+    let a1 = document.getElementById("a1").value.toLowerCase();
+
+    if (a1 === "школа") {
+        document.getElementById("step1").classList.add("hidden");
+        document.getElementById("step2").classList.remove("hidden");
+    } else {
+        alert("Неверно. Подумай о том, где мы чаще всего были вместе 💭");
+    }
+}
+
+// 2 шаг
+function check2() {
+    let a2 = document.getElementById("a2").value;
+
+    if (a2 === "18.06.2019") {
+        document.getElementById("step2").classList.add("hidden");
+        document.getElementById("step3").classList.remove("hidden");
+    } else {
+        alert("Нет… посмотри внимательнее на воспоминание 🌸");
+    }
+}
+
+// 3 шаг
+function check3() {
+    let a3 = document.getElementById("a3").value;
+
+    if (a3 === "12:59") {
+        document.getElementById("step3").classList.add("hidden");
+        document.getElementById("final").classList.remove("hidden");
+    } else {
+        alert("Тик-так… почти 💛");
+    }
+}
+
+</script>
+
+</body>
+</html>
