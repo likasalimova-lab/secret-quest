@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для Кати 💛</title>
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ffd6e7,#fff6c9);
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+color:#444;
+}
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+max-width:700px;
+width:90%;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+input{
+padding:12px;
+width:220px;
+border-radius:10px;
+border:1px solid #ddd;
+margin:15px;
+}
+button{
+padding:12px 24px;
+border:none;
+border-radius:10px;
+background:#ff7aa8;
+color:white;
+cursor:pointer;
+}
+img{
+max-width:100%;
+border-radius:15px;
+}
+#page2{display:none;}
+.photo{
+width:250px;
+height:250px;
+margin:20px auto;
+border:3px dashed #ffb4c9;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+background:#fff8fb;
+}
+</style>
+</head>
+<body>
+
+<div class="card" id="page1">
+<h1>Катя, я в тебя верю! 💛</h1>
+
+<img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
+alt="heart gif">
+
+<p>Введи секретный пароль ✨</p>
+
+<input id="pass" type="password" placeholder="Пароль">
+<br>
+<button onclick="checkPass()">Открыть</button>
+<p id="error" style="color:#e74c3c;"></p>
+</div>
+
+<div class="card" id="page2">
+<h1>Для тебя 💌</h1>
+
+<div class="photo">
+📸 Здесь будет ваше фото
+</div>
+
+<p style="text-align:left;line-height:1.7;">
+Улыбнись 💛 ты справилась, и я тобой горжусь.<br><br>
+
+Катюша, привет!<br><br>
+
+Ахахах, я очень надеюсь, что ты сейчас улыбаешься и что мой квест спустя два года всё-таки сработал как надо и тебе удалось его пройти. 😄<br><br>
+
+Если да — я уже счастлива, потому что главная цель была именно в этом: немного порадовать тебя и оставить тёплое воспоминание.<br><br>
+
+Ты удивительный человек: сильный, целеустремлённый, волевой и при этом очень живой и настоящий. Я всегда тобой восхищалась.<br><br>
+
+Мне очень интересно, какая ты сейчас, что происходит в твоей жизни и о чём ты мечтаешь. Я уверена, что впереди тебя ждёт ещё миллион счастливых моментов.<br><br>
+
+Не знаю, что нам подбросит жизнь, но точно знаю, что мы ещё будем собираться девочками и обсуждать всё на свете. 🤗<br><br>
+
+В общем, будь собой — ты крутая!<br><br>
+
+Люблю и обнимаю,<br>
+Лика 🌸😍
+</p>
+</div>
+
+<script>
+function checkPass(){
+let p=document.getElementById("pass").value;
+if(p==="секрет"){
+document.getElementById("page1").style.display="none";
+document.getElementById("page2").style.display="block";
+}else{
+document.getElementById("error").innerText="Неверный пароль 💔";
+}
+}
+</script>
+
+</body>
+</html>
