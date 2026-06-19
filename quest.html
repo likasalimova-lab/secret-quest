@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Мини-квест</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0d0d0d;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.box { width: 90%; max-width: 600px; }
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #ff4da6;
+    color: white;
+}
+
+.hidden { display: none; }
+
+/* 🐱 кот */
+#cat {
+    font-size: 60px;
+    margin-top: 20px;
+}
+
+.food {
+    font-size: 30px;
+    cursor: grab;
+}
+
+/* зона кота */
+#dropZone {
+    margin-top: 20px;
+    padding: 40px;
+    border: 2px dashed #ff4da6;
+    border-radius: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<!-- ⏱ 1 СТРАНИЦА -->
+<div id="page1">
+    <h1>⏱ Останови таймер ровно на 5.8 секунды</h1>
+    <p>Нажми «Старт» и попробуй остановить время максимально точно.</p>
+    <p>Идеальная цель — 5.8 секунды.</p>
+
+    <h2 id="time">0.00</h2>
+
+    <button onclick="startTimer()">Старт</button>
+    <button onclick="stopTimer()">Стоп</button>
+</div>
+
+<!-- 😅 2 СТРАНИЦА -->
+<div id="page2" class="hidden">
+    <h1>Прости 😅</h1>
+    <p>Я не издеваюсь, правда. Просто хочу немного усложнить задачу 🙂</p>
+
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" width="250">
+
+    <br>
+    <button onclick="next2()">➡️ Дальше</button>
+</div>
+
+<!-- 🐱 3 СТРАНИЦА -->
+<div id="page3" class="hidden">
+    <h1>Ты очень близко…</h1>
+    <p>Покорми котика! Попади 5 раз 🐱</p>
+
+    <div id="cat">🐱</div>
+
+    <div id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">
+        сюда котику
+    </div>
+
+    <div id="food" class="food" draggable="true" ondragstart="drag(event)">
+        🍗
+    </div>
+
+    <p id="score">0 / 5</p>
+
+    <button onclick="next3()">Если готово ➡️</button>
+</div>
+
+<!-- 🔐 4 СТРАНИЦА -->
+<div id="page4" class="hidden">
+    <h1>Чёрт… надеюсь, это последний пароль</h1>
+
+    <p>Вот последняя подсказка:</p>
+    <p><b>Тайна, загадка, ****** ?</b></p>
+
+    <p>Ссылка:</p>
+    <a href="https://github.com/" target="_blank">
+        Открыть
+    </a>
+</div>
+
+</div>
+
+<script>
+
+/* ⏱ ТАЙМЕР */
+let startTime;
+let timer;
+
+function startTimer() {
+    startTime = Date.now();
+    timer = setInterval(() => {
+        let t = ((Date.now() - startTime) / 1000).toFixed(2);
+        document.getElementById("time").innerText = t;
+    }, 50);
+}
+
+function stopTimer() {
+    clearInterval(timer);
+    let final = parseFloat(document.getElementById("time").innerText);
+
+    if (Math.abs(final - 5.8) < 0.3) {
+        document.getElementById("page1").classList.add("hidden");
+        document.getElementById("page2").classList.remove("hidden");
+    } else {
+        alert("почти 😏 попробуй ещё");
+    }
+}
+
+/* 😅 */
+function next2() {
+    document.getElementById("page2").classList.add("hidden");
+    document.getElementById("page3").classList.remove("hidden");
+}
+
+/* 🐱 ИГРА */
+let score = 0;
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+
+    score++;
+    document.getElementById("score").innerText = score + " / 5";
+
+    if (score >= 5) {
+        alert("котик доволен 🐱💛");
+    }
+}
+
+function next3() {
+    if (score >= 5) {
+        document.getElementById("page3").classList.add("hidden");
+        document.getElementById("page4").classList.remove("hidden");
+    } else {
+        alert("покорми котика ещё 😼");
+    }
+}
+
+</script>
+
+</body>
+</html>
